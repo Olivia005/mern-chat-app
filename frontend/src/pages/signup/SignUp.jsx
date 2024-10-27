@@ -27,7 +27,7 @@ const SignUp = () => {
 		<div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
 			<div className='w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
 				<h1 className='text-3xl font-semibold text-center text-gray-300'>
-					Sign Up <span className='text-blue-500'> ChatApp</span>
+					Sign Up <span className='text-yellow-500'> ChatApp</span>
 				</h1>
 
 				<form onSubmit={handleSubmit}>
@@ -87,14 +87,14 @@ const SignUp = () => {
 
 					<Link
 						to={"/login"}
-						className='text-sm hover:underline hover:text-blue-600 mt-2 inline-block'
+						className='text-sm hover:underline hover:text-yellow-600 mt-2 inline-block'
 						href='#'
 					>
 						Already have an account?
 					</Link>
 
 					<div>
-						<button className='btn btn-block btn-sm mt-2 border border-slate-700' disabled={loading}>
+						<button className='btn btn-block btn-sm mt-2 border text-yellow-500 bg-slate-800' disabled={loading}>
 							{loading ? <span className='loading loading-spinner'></span> : "Sign Up"}
 						</button>
 					</div>
