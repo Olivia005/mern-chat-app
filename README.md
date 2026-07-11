@@ -12,7 +12,9 @@ A modern full-stack real-time chat application featuring secure authentication, 
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3-38BDF8?style=for-the-badge&logo=tailwind-css)
 
 </div>
+
 ---
+
 ## 📖 Overview
 
 **Sleipner** is a modern full-stack real-time chat application built to deliver fast, secure, and seamless communication. Powered by the MERN stack and Socket.IO, it enables users to exchange instant messages, share images, and stay connected through real-time synchronization. The application features JWT-based authentication for secure access, personalized gender-based avatars for an engaging user experience, and a responsive interface optimized for both desktop and mobile devices. With its scalable architecture and low-latency communication, Sleipner provides a smooth and interactive messaging experience for modern users.
