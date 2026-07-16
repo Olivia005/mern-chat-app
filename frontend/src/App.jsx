@@ -9,13 +9,23 @@ import { useAuthContext } from "./context/AuthContext";
 function App() {
 	const { authUser } = useAuthContext();
 	return (
-		<div className='p-4 h-screen flex items-center justify-center'>
+		<div className='h-screen bg-[#030305] overflow-hidden'>
 			<Routes>
 				<Route path='/' element={authUser ? <Home /> : <Navigate to={"/login"} />} />
 				<Route path='/login' element={authUser ? <Navigate to='/' /> : <Login />} />
 				<Route path='/signup' element={authUser ? <Navigate to='/' /> : <SignUp />} />
 			</Routes>
-			<Toaster />
+			<Toaster
+				toastOptions={{
+					style: {
+						background: "#0f0f0a",
+						color: "#fff",
+						border: "1px solid rgba(251,191,36,0.2)",
+						fontFamily: "Inter, system-ui, sans-serif",
+						fontSize: "13px",
+					},
+				}}
+			/>
 		</div>
 	);
 }

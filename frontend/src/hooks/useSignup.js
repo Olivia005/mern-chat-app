@@ -18,14 +18,23 @@ const useSignup = () => {
 				body: JSON.stringify({ fullName, username, password, confirmPassword, gender }),
 			});
 
-			const data = await res.json();
+			let data;
+			const contentType = res.headers.get("content-type");
+			if (contentType && contentType.indexOf("application/json") !== -1) {
+				data = await res.json();
+			} else {
+				const text = await res.text();
+				throw new Error(`Server returned non-JSON response. Status: ${res.status}. Body: ${text.slice(0, 50)}...`);
+			}
+
 			if (data.error) {
 				throw new Error(data.error);
 			}
 			localStorage.setItem("chat-user", JSON.stringify(data));
 			setAuthUser(data);
 		} catch (error) {
-			toast.error(error.message);
+			toast.error(error.message || "Failed to sign up. Server might be down.");
+			console.error("Signup error:", error);
 		} finally {
 			setLoading(false);
 		}

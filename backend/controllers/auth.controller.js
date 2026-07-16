@@ -22,8 +22,8 @@ export const signup = async (req, res) => {
 
 		// https://avatar-placeholder.iran.liara.run/
 
-		const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${username}`;
-		const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${username}`;
+		const boyProfilePic = `https://api.dicebear.com/9.x/avataaars/svg?seed=${username}&backgroundColor=b6e3f4,c0aede,d1d4f9`;
+		const girlProfilePic = `https://api.dicebear.com/9.x/lorelei/svg?seed=${username}&backgroundColor=ffdfbf,ffd5dc,d1d4f9`;
 
 		const newUser = new User({
 			fullName,
@@ -42,6 +42,7 @@ export const signup = async (req, res) => {
 				_id: newUser._id,
 				fullName: newUser.fullName,
 				username: newUser.username,
+				gender: newUser.gender,
 				profilePic: newUser.profilePic,
 			});
 		} else {
@@ -65,11 +66,17 @@ export const login = async (req, res) => {
 
 		generateTokenAndSetCookie(user._id, res);
 
+		const profilePic = user.profilePic ||
+			(user.gender === "male"
+				? `https://api.dicebear.com/9.x/avataaars/svg?seed=${user.username}&backgroundColor=b6e3f4,c0aede,d1d4f9`
+				: `https://api.dicebear.com/9.x/lorelei/svg?seed=${user.username}&backgroundColor=ffdfbf,ffd5dc,d1d4f9`);
+
 		res.status(200).json({
 			_id: user._id,
 			fullName: user.fullName,
 			username: user.username,
-			profilePic: user.profilePic,
+			gender: user.gender,
+			profilePic,
 		});
 	} catch (error) {
 		console.log("Error in login controller", error.message);
